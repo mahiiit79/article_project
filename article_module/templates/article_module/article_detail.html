@@ -1,0 +1,83 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}
+	جزئیات مقاله
+{% endblock %}
+
+
+{% block content %}
+                <div class="page-content">
+                <div class="container">
+                    <h2 class="title"></h2><!-- End .title -->
+
+
+
+                    <section id="table-article">
+                      <h1 class="tabl">مشخصات مقاله</h1>
+                      <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <thead>
+                            <tr>
+                              <th class="th-article">عنوان انگلیسی مقاله</th>
+                                <th class="th-article">عنوان فارسی مقاله</th>
+                              <th class="th-article">سال انتشار</th>
+                              <th class="th-article">تعداد صفحات مقاله انگلیسی</th>
+                              <th class="th-article">مجله</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+                      <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td class="td-article">{{ article.title_in_english }}</td>
+                              <td class="td-article">{{ article.title_in_persian }} </td>
+                              <td class="td-article">{{ article.publish_date }}</td>
+                              <td class="td-article">{{ article.count_pages }}</td>
+                              <td class="td-article">{{ article.journal }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+
+
+
+
+
+
+
+
+                    <div class="text-center">
+                        <h2 class="abstract-article">چکیده مقاله</h2><br><!-- End .title -->
+                        <p class="text-center">{{ article.abstract }}</p>
+                    </div><!-- End .text-center -->
+
+                    <hr class="mt-4 mb-4">
+
+                    <div class="heading heading-center">
+                        <div class="heading-left">
+                            <div class="download-button">
+                                <a id="mybutton" href="{{ article.articles_file.url }}" download="{{ article.articles_file.url }}">دانلود</a>
+                            </div>
+
+                          {% comment %}  {% for pdf in article_pdf %}
+                            	<a href="{{pdf.articles_file.url}}" download="{{pdf.articles_file.url}}">Download</a>
+                            {% endfor %}{% endcomment %}
+
+
+                        </div><!-- End .heading-left -->
+
+
+
+
+
+
+
+
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+
+                </div>{% endblock %}

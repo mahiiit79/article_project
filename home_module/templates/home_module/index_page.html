@@ -1,0 +1,107 @@
+{% extends 'shared/layout.html' %}
+{% load thumbnail %}
+
+{% block title %}
+	صفحه اصلی
+{% endblock %}
+
+{% block content %}
+    
+    
+    <div class="container-fluid slided">
+      <div class="container">
+          <p>در دنیای مقاله می توانید انواع مقاله را با ترجمه فارسی یافت کنید .</p>
+        <a href="{% url 'contact_us' %}" class="big-btn">برای همکاری با ما اینجا کلکیک کنید<span class="lnr lnr-arrow-left"></span></a>
+      </div>
+    </div>
+    
+    
+    <div id="" class="container sec">
+    <!--  <div class="col-md-7"></div>-->
+    <h3 class="h3-title">آخرین مقالات</h3>
+    <section class="slider-home">
+    
+    <div class="swiper mySwiper container">
+      
+        <div class="swiper-wrapper content">
+           {% for group in latest_articles %}
+           	{% for article in group %}
+           		 <div class="swiper-slide card">
+          <div class="card-content">
+            <div class="image">
+                  {% thumbnail article.image "862x398" quality=95 crop='center' as im %}
+                                        <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+            </div>
+          
+            <div class="name-profession">
+              <span class="name">{{ article.title_in_english }}</span>
+                <hr>
+              <span class="profession">{{ article.title_in_persian }}</span>
+            </div>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="button">
+              <a class="aboutMe" href="{% url 'article_detail' slug=article.slug %}">دانلود مقاله</a>
+             
+            </div>
+          </div>
+        </div>
+           	{% endfor %}
+           	
+           {% endfor %}
+           
+   
+      </div>
+        
+        
+        
+        
+    </div>
+    <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+  </section>
+    
+    
+    
+    
+    
+    </div>
+   
+  
+    <div id="portfolio" class="container sec">
+      <div class="row">
+        <h3 class="h3-title">پربازدیدترین مقالات</h3>
+       {% for group in most_visit_articles %}
+       	{% for article in group %}
+       		 <div class="col-md-3">
+          <div class="portfolio">
+            <a href="#"><div class="overly">
+              <div class="desc">
+                <h6 style="color: white">{{ article.title_in_english }}</h6>
+                  <a href="{% url 'article_detail' slug=article.slug %}" style="color: white">مشاهده و دانلود</a>
+              </div>
+              <div class="out"><span class="lnr lnr-star"></span></div>
+            </div>
+                  {% thumbnail article.image "862x398" quality=95 crop='center' as im %}
+                                        <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+            </a>
+          </div>
+        </div>
+       	{% endfor %}
+       	
+       {% endfor %}
+       
+  
+      </div>
+    </div>
+    
+    
+{% endblock %}

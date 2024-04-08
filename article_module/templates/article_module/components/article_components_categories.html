@@ -1,0 +1,14 @@
+
+                            <h3 class="widget-title">دسته بندی ها</h3><!-- End .widget-title -->
+                                <ul>
+                                     {% for category in categories %}
+
+                                 <li>
+                                    {% comment %} <a href="{% url 'article_categories_list' cat=category.url_title %}" class="link-category">{{ category.title }}"></a>{% endcomment %}
+                                 <a href="{% url 'article_categories_list' cat=category.url_title %}" class="link-category">
+                                     {{ category.title }}
+                                 </a>
+                                 </li>
+                                    {% endfor %}
+
+                                </ul>

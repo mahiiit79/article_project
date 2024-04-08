@@ -1,0 +1,30 @@
+ 
+ 
+ 
+  <div class="container-fluid top-menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-xs-2">
+            <div class="logo">
+              <h1><a href="#">دنیای مقاله</a></h1>
+            </div>
+          </div>
+          <div class="col-md-8 col-xs-7">
+            <ul class="top-nav">
+              <li class="active"><a class="menu-btn" href="{% url 'home' %}">خانه</a></li>
+                 <li><a class="menu-btn" href="{% url 'article_list' %}">مقاله</a></li>
+              <li><a class="menu-btn" href="{% url 'contact_us' %}">تماس با ما</a></li>
+            
+              
+              {% if request.user.is_superuser %}
+              <li><a href="/admin">پنل ادمین</a>
+         {% endif %}
+
+            </ul>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            
+          </div>
+        </div>
+      </div>
+    </div>

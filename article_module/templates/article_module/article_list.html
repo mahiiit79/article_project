@@ -1,0 +1,188 @@
+{% extends 'shared/layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+
+
+{% block title %}
+	لیست مقالات
+{% endblock %}
+
+{% block content %}
+           <div class="context">
+        <h1>دنیای مقاله</h1>
+            </div>
+
+<div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
+
+    <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="entry-container max-col-2" data-layout="fitRows">
+                                {% for article in articles %}
+                                	<div class="entry-item col-sm-6">
+                                    <article class="entry entry-grid">
+                                        <figure class="entry-media">
+                                            <a href="">
+                                                  {% thumbnail article.image "268x250" quality=80 crop='center' as im %}
+                                                     <img src="{{ im.url }}">
+                                                            {% endthumbnail %}
+                                            </a>
+                                        </figure><!-- End .entry-media -->
+
+                                        <div class="entry-body">
+                                         {% comment %}   <div class="entry-meta">
+                                                <span class="entry-author">
+                                                    نویسنده : <a href="#">مدیر سایت</a>
+                                                </span>
+                                                <span class="meta-separator">|</span>
+                                                <a href="#">22 اسفند 1401</a>
+                                                <span class="meta-separator">|</span>
+                                                <a href="#">2 دیدگاه</a>
+                                            </div><!-- End .entry-meta -->{% endcomment %}
+
+
+
+                                            <h2 class="entry-title title-article">{{ article.title_in_english }}</h2>
+                                             <h2 class="entry-title title-article">{{ article.title_in_persian }}</h2>
+
+
+
+
+                                            <div class="entry-content">
+                                                <p class="p-abstract">{{ article.abstract }}</p>
+                                                <a href="{% url 'article_detail' slug=article.slug %}" class="read-more" style="width:22%">ادامه</a>
+                                            </div><!-- End .entry-content -->
+                                        </div><!-- End .entry-body -->
+                                    </article><!-- End .entry -->
+                                </div><!-- End .entry-item -->
+                                {% endfor %}
+
+
+
+
+                        <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                    	     <li class="page-item disabled">
+                                        <a class="page-link page-link-prev" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous" tabindex="-1"
+                                            aria-disabled="true">
+                                            <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>قبلی
+                                        </a>
+                                    </li>
+
+                                    {% endif %}
+
+                                    {% for pagenumber in paginator.page_range %}
+                                        <li class="page-item  {% if page_obj.number == pagenumber %}active {% endif %}"
+                                            aria-current="page">  <a class="page-link" href="?page={{ pagenumber }}">{{ pagenumber }}</a>
+                                    </li>
+                                    {% endfor %}
+
+
+                                {% if page_obj.has_next %}
+                                	   <li class="page-item">
+                                        <a class="page-link page-link-next" href="#" aria-label="Next">
+                                            بعدی<span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                </ul>
+                            </nav>
+
+
+
+
+
+
+
+
+                            </div><!-- End .entry-container -->
+
+                        </div><!-- End .col-lg-9 -->
+                                                 <aside class="col-lg-3">
+                            <div class="sidebar">
+                                <div class="widget widget-search">
+                                    <h3 class="widget-title">جستجو</h3><!-- End .widget-title -->
+
+
+                                    <form  method="get" action="{% url 'search' %}">
+                                        <label for="ws" class="sr-only">جستجوی اخبار</label>
+                                        <input type="search" class="form-control" name="search" id="ws"
+                                            placeholder="جستجوی خبر مورد نظر">
+                                        <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i><span
+                                                class="sr-only">جستجو</span></button>
+                                    </form>
+
+
+                                  {% comment %} {% for article in article_search %}
+                                    	<div class="entry-item col-sm-6">
+                                    <article class="entry entry-grid">
+                                        <figure class="entry-media">
+                                            <a href="">
+                                                  {% thumbnail article.image "268x250" quality=80 crop='center' as im %}
+                                                     <img src="{{ im.url }}">
+                                                            {% endthumbnail %}
+                                            </a>
+                                        </figure><!-- End .entry-media -->
+
+                                            <h2 class="entry-title">{{ article.title_in_english }}</h2>
+                                             <h2 class="entry-title">{{ article.title_in_persian }}</h2>
+
+                                            <div class="entry-content">
+                                                <p class="p-abstract">{{ article.abstract }}</p>
+                                                <a href="{% url 'article_detail' slug=article.slug %}" class="read-more" style="width:22%">ادامه</a>
+                                            </div><!-- End .entry-content -->
+                                    </article></div><!-- End .entry-body --></div></div></aside>
+                                </div><!-- End .entry-item -->
+                                    {% endfor %}{% endcomment %}
+
+                                </div></div></aside>
+
+    
+
+
+                                <div class="widget widget-cats">
+                                     {% render_partial 'article_module.views.article_categories_component' %}
+                                </div><!-- End .widget -->
+
+
+
+
+                                                            {% for banner in banners %}
+                                         <div class="widget widget-banner-sidebar">
+                                    <div class="banner-sidebar-title"></div>
+                                    <!-- End .ad-title -->
+
+                                    <div class="banner-sidebar banner-overlay">
+                                        <a href="{{ banner.url }}">
+                                            <img src="{{ banner.image.url }}" alt="بنر">
+                                        </a>
+                                    </div><!-- End .banner-ad -->
+                                </div><!-- End .widget -->
+                                       {% endfor %}
+
+
+
+
+
+
+
+
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+{% endblock %}
+

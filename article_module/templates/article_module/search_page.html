@@ -1,0 +1,113 @@
+{% extends 'shared/layout.html' %}
+{% load thumbnail %}
+
+
+{% block content %}
+ <div class="context">
+        <h1>دنیای مقاله</h1>
+            </div>
+
+<div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
+
+
+  <div class="container">
+
+
+
+
+    <aside class="col-lg-3">
+                            <div class="sidebar">
+                                <div class="widget widget-search">
+                                    <h3 class="widget-title">جستجو</h3><!-- End .widget-title -->
+
+
+                                    <form  method="get" action="{% url 'search' %}">
+                                        <label for="ws" class="sr-only">جستجوی اخبار</label>
+                                        <input type="search" class="form-control" name="search" id="ws"
+                                            placeholder="جستجوی خبر مورد نظر">
+                                        <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i><span
+                                                class="sr-only">جستجو</span></button>
+                                    </form>
+
+                                </div></div></aside>
+
+
+   <div class="row" id="row-search">
+          {% for article in article_search %}
+
+
+               <div class="col-md-3">
+          <div class="portfolio">
+            <a href="{% url 'article_detail' slug=article.slug %}"><div class="overly">
+              <div class="desc">
+                <h6>{{ article.title_in_english }}</h6><br>
+                  <h6>{{ article.title_in_persian }}</h6>
+
+              </div>
+              <div class="out"><span class="lnr lnr-star"></span></div>
+            </div>
+                  {% thumbnail article.image "268x250" quality=80 crop='center' as im %}
+                                                     <img src="{{ im.url }}">
+                                                            {% endthumbnail %}></a>
+          </div>
+        </div>
+
+          {% endfor %}
+</div>
+
+
+
+      </div>
+
+
+
+
+
+
+    {% comment %}{% for article in article_search %}
+    	<div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
+                            <article class="">
+                                <figure class="entry-media">
+                                    <a href="single.html">
+                                          {% thumbnail article.image "268x250" quality=80 crop='center' as im %}
+                                                     <img src="{{ im.url }}">
+                                                            {% endthumbnail %}
+                                    </a>
+                                </figure><!-- End .entry-media -->
+
+                                <div class="entry-body">
+
+
+                                    <h2 class="entry-title text-center">
+                                        <a href="single.html" class="title-search">{{ article.title_in_english }}</a><br>
+                                        <a href="single.html" class="title-search">{{ article.title_in_persian }}</a>
+                                    </h2><!-- End .entry-title -->
+
+
+
+                                    <div class="entry-content text-center">
+                                        <p class="search-abstract">{{ article.abstract }}</p>
+                                            <a href="{% url 'article_detail' slug=article.slug %}">ادامه و دانلود</a>
+                                    </div><!-- End .entry-content -->
+                                </div><!-- End .entry-body -->
+                            </article><!-- End .entry -->
+                        </div>
+    {% endfor %}{% endcomment %}
+
+
+
+
+{% endblock %}

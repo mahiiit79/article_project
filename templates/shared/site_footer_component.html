@@ -1,0 +1,80 @@
+{% load thumbnail %} 
+
+<div id="services" class="container sec">
+      <div class="text-center">
+        <h3 class="h3-title">خدمات ما</h3>
+        <div class="row">
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="">
+              
+               {% thumbnail site_setting.site_logo "100x93" quality=120 crop='center' as im %}
+                   <img src="{{ im.url }}">
+               {% endthumbnail %}
+              
+            </div>
+            <div class="title">
+              <h4>{{ site_setting.site_name }}</h4>
+            </div>
+            <div class="desc">
+              <p>پیشنهاد همکاری</p>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="icon">
+              <span class="lnr lnr-laptop-phone"></span>
+            </div>
+            <div class="title">
+              <h4>حرفه ای هستیم</h4>
+            </div>
+            <div class="desc">
+              <p>{{ site_setting.about_us_text }}</p>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="icon">
+              <span class="lnr lnr-rocket"></span>
+            </div>
+            <div class="title">
+              <h4>آدرس دفتر</h4>
+            </div>
+            <div class="desc">
+              <p>{{ site_setting.address }}</p>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="icon">
+              <span class="lnr lnr-camera"></span>
+            </div>
+            <div class="title">
+              <h4>بازاریابی آنلاین</h4>
+            </div>
+            <div class="desc">
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="icon">
+              <span class="lnr lnr-phone-handset"></span>
+            </div>
+            <div class="title">
+              <h4>پشتیبانی همیشگی</h4>
+            </div>
+            <div class="desc">
+              <p>{{ site_setting.phone }}</p>
+                <p>{{ site_setting.email }}</p>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6 feature">
+            <div class="icon">
+              <span class="lnr lnr-calendar-full"></span>
+            </div>
+            <div class="title">
+              <h4>تقویم رویدادها</h4>
+            </div>
+            <div class="desc">
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
